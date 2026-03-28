@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMARTH ENTERPRISES</title>
+    <link rel="icon" href="images/samarth.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="samarth.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-left">
+            <img id="site-logo" src="images/samarth.jpg" alt="Samarth Enterprises logo">
+            <div class="site-title-group">
+                <h1 class="site-title">Samarth Enterprises</h1>
+                <p class="site-subtitle">Labour & Security Services</p>
+            </div>
+        </div>
+
+        <nav class="main-nav" aria-label="Main">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-right">
+            <div class="contact-info">
+                <span class="contact-question">Have any questions?</span>
+                <a class="contact-phone" href="tel:+919168769090" aria-label="Call Samarth Enterprises">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <span class="phone-text">+91-9168769090</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home slider (Labour, Security, Housekeeping, Gardening) -->
+    <section class="home-slider" aria-label="Home slider">
+        <div class="slides">
+            <div class="slide align-left" data-title="Labour" style="background-color: #e8f6ff;">
+                <img src="images/fw2.jpeg" alt="Labour Services">
+                <div class="slide-content">
+                    <div class="brand">Samarth Enterprises</div>
+                    <h2 class="service-title">Labour Services</h2>
+                    <button class="contact-cta" data-service="Labour">Contact Us</button>
+                </div>
+            </div>
+            <div class="slide align-right" data-title="Security" style="background-color: #fff3e0;">
+                <img src="images/se2.jpeg" alt="Security Services">
+                <div class="slide-content">
+                    <div class="brand">Samarth Enterprises</div>
+                    <h2 class="service-title">Security Services</h2>
+                    <button class="contact-cta" data-service="Security">Contact Us</button>
+                </div>
+            </div>
+            <div class="slide align-right" data-title="Housekeeping" style="background-color: #e8f5e9;">
+                <img src="images/hk2.jpeg" alt="Housekeeping Services">
+                    <div class="slide-content">
+                        <div class="brand">Samarth Enterprises</div>
+                        <h2 class="service-title">Housekeeping Services</h2>
+                        <button class="contact-cta" data-service="Housekeeping">Contact Us</button>
+                    </div>
+            </div>
+            <div class="slide align-left" data-title="Gardening" style="background-color: #f3e5f5;">
+                <img src="images/g22.jpeg" alt="Gardening Services">
+                <div class="slide-content">
+                    <div class="brand">Samarth Enterprises</div>
+                    <h2 class="service-title">Gardening Services</h2>
+                    <button class="contact-cta" data-service="Gardening">Contact Us</button>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-prev" aria-label="Previous slide">‹</button>
+        <button class="slider-next" aria-label="Next slide">›</button>
+
+        <div class="slider-dots" aria-hidden="false"></div>
+    </section>
+    
+<!-- Company stats (below the home slider) -->
+<section class="site-stats" aria-label="Company statistics">
+    <div class="stats-container">
+        <div class="stat-item">
+            <div class="stat-icon" aria-hidden="true"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Years of Experience</div>
+        </div>
+        <div class="stat-sep" aria-hidden="true"></div>
+        <div class="stat-item">
+            <div class="stat-icon" aria-hidden="true"><i class="fa-solid fa-users"></i></div>
+            <div class="stat-number">30+</div>
+            <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-sep" aria-hidden="true"></div>
+        <div class="stat-item">
+            <div class="stat-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="stat-number">20+</div>
+            <div class="stat-label">Locations</div>
+        </div>
+    </div>
+</section>
+    <!-- Enquiry modal (hidden by default) -->
+    <div id="enquiry-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="enquiry-title">
+            <button class="modal-close" aria-label="Close">×</button>
+            <h2 id="enquiry-title">Enquiry — <span id="enquiry-service">Service</span></h2>
+            <div id="enquiry-status" class="enquiry-status" aria-live="polite"></div>
+            <form id="enquiry-form">
+                <label class="field">
+                    <span>Name *</span>
+                    <input name="name" type="text" required placeholder="Enter your full name">
+                </label>
+                <label class="field">
+                    <span>Phone *</span>
+                    <input name="phone" type="tel" required placeholder="Enter your phone number" pattern="[0-9]{10}">
+                </label>
+                <label class="field">
+                    <span>Email *</span>
+                    <input name="email" type="email" required placeholder="Enter your email address">
+                </label>
+                <label class="field">
+                    <span>Location</span>
+                    <input name="location" type="text" placeholder="City, area or address">
+                </label>
+                <label class="field">
+                    <span>Service</span>
+                    <input name="service" id="enquiry-service-input" type="text" readonly>
+                </label>
+                <label class="field">
+                    <span>Message</span>
+                    <textarea name="message" rows="4" placeholder="Tell us about your requirements..."></textarea>
+                </label>
+                <div class="form-actions">
+                    <button type="submit" class="submit-cta">Send Enquiry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+    <div class="footer-container">
+
+        <!-- Left: Logo + About -->
+        <div class="footer-section about">
+            <img src="images/samarth.jpg" alt="Samarth Enterprises" class="footer-logo">
+
+            <p>
+                We provide reliable manpower, security, housekeeping, and gardening services. 
+                Our team is trained to maintain safety, cleanliness, and smooth operations for 
+                homes, societies, offices, and industries.
+            </p>
+        </div>
+
+        <!-- Center: Connect Us -->
+        <div class="footer-section connect">
+            <h3>CONNECT US</h3>
+            <p>Tel : +919168769090</p>
+            <p>Email : samarthent2024@gmail.com</p>
+
+            <div class="social-icons">
+                <a href="https://facebook.com/yourpage" target="_blank">
+                     <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com/yourpage" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com/in/yourpage" target="_blank">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Right: What We Do -->
+        <div class="footer-section services">
+            <h3>WHAT WE DO</h3>
+            <ul>
+                <li>Security Services</li>
+                <li>Housekeeping</li>
+                <li>Labour Supply</li>
+                <li>Gardening Services</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        Copyright © 2025 Samarth Enterprises. All Rights Reserved.
+    </div>
+</footer>
+
+    <script src="samarth.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#f3f6fd"/>
+      <stop offset="100%" stop-color="#eef4fb"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence baseFrequency="0.8" numOctaves="1" stitchTiles="stitch" result="t"/>
+      <feColorMatrix in="t" type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" in2="t" mode="overlay"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <g opacity="0.06" transform="translate(-100,-50)">
+    <circle cx="200" cy="150" r="220" fill="#cfe6ff"/>
+    <circle cx="900" cy="400" r="300" fill="#d9f0ff"/>
+  </g>
+  <rect width="1200" height="800" fill="transparent" filter="url(#grain)"/>
+</svg>
