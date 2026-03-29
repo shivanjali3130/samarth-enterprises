@@ -90,7 +90,11 @@ const PHONE_REGEX = /^[\d\s\-\+\(\)]{7,}$/;
 const PORT = process.env.PORT || 3000;
 
 /* ------------------------- Static Files ------------------------- */
-app.use(express.static(path.join(__dirname, "public")));
+const publicDir = path.join(__dirname, "public");
+app.use(express.static(publicDir));
+
+// Debug: Log the public directory path
+console.log(`📁 Public directory: ${publicDir}`);
 
 /* ------------------------- MongoDB Connection ------------------------- */
 // Optional: Only connect if MONGO_URI exists
@@ -171,6 +175,11 @@ app.get("/api", (req, res) => {
       <p>Server is running ✅</p>
     </body></html>
   `);
+});
+
+// Root route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "samarth.html"));
 });
 
 // Save enquiry
@@ -302,7 +311,14 @@ app.get("/api/enquiries", async (req, res) => {
 /* ------------------------- Fallback Route ------------------------- */
 // Always LAST — serve frontend for all other routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "samarth.html"));
+  const htmlPath = path.join(__dirname, "public", "samarth.html");
+  console.log(`📄 Serving fallback: ${htmlPath}`);
+  res.sendFile(htmlPath, (err) => {
+    if (err) {
+      console.error(`❌ Error serving samarth.html:`, err);
+      res.status(404).send("Page not found. Make sure public/samarth.html exists.");
+    }
+  });
 });
 
 /* ------------------------- Error Handling ------------------------- */
