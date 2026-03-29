@@ -87,10 +87,6 @@ function sanitizeInput(str) {
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^[\d\s\-\+\(\)]{7,}$/;
 
-/* ------------------------- Static Files (Vercel) ------------------------- */
-const publicDir = path.join(__dirname, "../server/public");
-app.use(express.static(publicDir));
-
 /* ------------------------- MongoDB Connection ------------------------- */
 // Optional: Only connect if MONGO_URI exists
 if (process.env.MONGO_URI) {
@@ -167,11 +163,6 @@ app.get("/api", (req, res) => {
       <p>Server is running ✅</p>
     </body></html>
   `);
-});
-
-// Root route
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../server/public/samarth.html"));
 });
 
 // Save enquiry
@@ -298,18 +289,6 @@ app.get("/api/enquiries", async (req, res) => {
     console.error("❌ Fetch error:", err);
     return res.status(500).json({ error: "Unable to retrieve enquiries" });
   }
-});
-
-/* ------------------------- Fallback Route ------------------------- */
-// Always LAST — serve frontend for all other routes
-app.get("*", (req, res) => {
-  const htmlPath = path.join(__dirname, "../server/public/samarth.html");
-  res.sendFile(htmlPath, (err) => {
-    if (err) {
-      console.error(`❌ Error serving samarth.html:`, err);
-      res.status(404).send("Page not found");
-    }
-  });
 });
 
 /* ------------------------- Error Handling ------------------------- */
