@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "outputDirectory": "public",
+  "functions": {
+    "api/index.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    { "source": "/api/enquiry",    "destination": "/api/index.js" },
+    { "source": "/api/enquiries",  "destination": "/api/index.js" },
+    { "source": "/about",          "destination": "/public/about.html" },
+    { "source": "/contact",        "destination": "/public/contact.html" },
+    { "source": "/gallery",        "destination": "/public/gallery.html" },
+    { "source": "/services",       "destination": "/public/services.html" },
+    { "source": "/",               "destination": "/public/samarth.html" }
+  ]
+}
