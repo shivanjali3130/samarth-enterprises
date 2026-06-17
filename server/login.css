@@ -1,0 +1,207 @@
+/* Login Page Specific Styling */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px 20px 80px; /* Offset for fixed header */
+    background-color: #f9f9f9;
+    min-height: 80vh;
+}
+
+.login-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border-top: 5px solid #04B1F1; /* Using Samarth Blue */
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.login-header h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.login-header p {
+    color: #777;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-container i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #04B1F1;
+    font-size: 16px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 12px 12px 12px 42px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.input-container input:focus {
+    border-color: #04B1F1;
+    outline: none;
+    box-shadow: 0 0 8px rgba(4, 177, 241, 0.2);
+}
+
+/* Styles for select (role) and admin secret input */
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-group input#adminSecret,
+.form-group input[type="password"]:not(.icon-input) {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.form-group input#adminSecret:focus {
+    border-color: #04B1F1;
+    outline: none;
+    box-shadow: 0 0 8px rgba(4, 177, 241, 0.12);
+}
+
+/* Signup form (inputs without icon) styling */
+#signupForm .form-group input,
+#signupForm .form-group select,
+#signupForm .form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.25s;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+#signupForm .form-group input:focus,
+#signupForm .form-group select:focus,
+#signupForm .form-group textarea:focus {
+    border-color: #04B1F1;
+    box-shadow: 0 0 8px rgba(4,177,241,0.08);
+    outline: none;
+}
+
+/* Signup message (success / error) */
+.signup-msg {
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+.signup-msg.success {
+    background: #e9fff2;
+    color: #1b7a3a;
+    border: 1px solid #b6e6c7;
+}
+.signup-msg.error {
+    background: #fff3f2;
+    color: #a94442;
+    border: 1px solid #f1c2bf;
+}
+
+/* Make the register button slightly taller on signup for better visibility */
+#signupForm .login-btn {
+    padding: 14px;
+    font-size: 16px;
+}
+
+/* Keep footer links centered and consistent */
+.login-footer p {
+    margin: 8px 0;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #04B1F1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background-color: #0389ba;
+    transform: translateY(-2px);
+}
+
+.error-msg {
+    margin-top: 15px;
+    color: #e74c3c;
+    background: #fdf2f2;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 25px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.login-footer a {
+    color: #04B1F1;
+    text-decoration: none;
+    font-weight: bold;
+}

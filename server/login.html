@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Samarth Enterprises</title>
+    <link rel="icon" href="images/samarth.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="samarth.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-left">
+            <img id="site-logo" src="images/samarth.jpg" alt="Samarth Enterprises logo">
+            <div class="site-title-group">
+                <h1 class="site-title">Samarth Enterprises</h1>
+                <p class="site-subtitle">Labour & Security Services</p>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="samarth.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="images/samarth.jpg" alt="Samarth Logo">
+                <h2>Welcome Back</h2>
+                <p>Login to your CRM Dashboard</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-container">
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-container">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                <button type="submit" class="login-btn">Login Now</button>
+                <div id="errorBox" class="error-msg"></div>
+            </form>
+
+            <div class="login-footer">
+                <p>New Client? <a href="signup.html">Create an Account</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            Copyright © 2025 Samarth Enterprises. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="login.js"></script>
+</body>
+</html>

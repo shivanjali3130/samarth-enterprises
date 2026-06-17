@@ -181,16 +181,32 @@
     }
 
     try {
-      const resp = await fetch('/api/enquiry', {
+      const apiUrl = new URL('/api/enquiry', window.location.origin).toString();
+      console.log('📤 Sending enquiry to:', apiUrl);
+
+      const resp = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(entry),
       });
 
-      const data = await resp.json();
+      console.log('📤 Response URL:', resp.url);
+      console.log('📤 Response status:', resp.status);
+      console.log('📤 Response headers:', resp.headers);
 
-      if (resp.ok && data.success) {
-        // Success message
+      const text = await resp.text();
+      console.log('Response text:', text);
+
+      let data = null;
+      if (text) {
+        try {
+          data = JSON.parse(text);
+        } catch (parseError) {
+          console.warn('Failed to parse server JSON:', parseError.message);
+        }
+      }
+
+      if (resp.ok && data?.success) {
         if (statusEl) {
           statusEl.style.color = '#0a6';
           statusEl.textContent = data.message || 'Submitted successfully — thank you!';
@@ -199,7 +215,8 @@
         form.reset();
         setTimeout(closeModal, 1500);
       } else {
-        throw new Error(data.error || 'Server error');
+        const errorMessage = data?.error || data?.msg || resp.statusText || 'Server error. Please try again.';
+        throw new Error(errorMessage || 'Submission failed.');
       }
     } catch (err) {
       console.error('❌ Submission failed:', err);

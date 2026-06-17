@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Portal | Samarth Enterprises</title>
+    <link rel="icon" href="images/samarth.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="samarth.css">
+    <link rel="stylesheet" href="auth-portal.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-left">
+            <img id="site-logo" src="images/samarth.jpg" alt="Samarth Enterprises logo">
+            <div class="site-title-group">
+                <h1 class="site-title">Samarth Enterprises</h1>
+                <p class="site-subtitle">Labour & Security Services</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="contact-info">
+                <span class="contact-question">Have any questions?</span>
+                <a class="contact-phone" href="tel:+919168769090" aria-label="Call Samarth Enterprises">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <span class="phone-text">+91-9168769090</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <button type="button" id="userTabBtn" class="tab-btn active">User Login</button>
+                <button type="button" id="adminTabBtn" class="tab-btn">Admin Login</button>
+            </div>
+
+            <div class="auth-body">
+                <form id="userLoginForm" class="auth-form active">
+                    <h3>Welcome Back</h3>
+                    <p class="form-subtitle">Login to your Client Dashboard</p>
+                    <div class="input-group">
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" id="userEmail" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" id="userPass" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="auth-submit user-btn">Client Login</button>
+                    <p class="auth-footer-text">New Client? <a href="#" data-show-form="userSignup">Create User Account</a></p>
+                </form>
+
+                <form id="adminLoginForm" class="auth-form">
+                    <h3>Admin Access</h3>
+                    <p class="form-subtitle">Authorized Personnel Only</p>
+                    <div class="input-group">
+                        <i class="fa fa-user-shield"></i>
+                        <input type="email" id="adminEmail" placeholder="Admin Email" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa fa-key"></i>
+                        <input type="password" id="adminPass" placeholder="Security Password" required>
+                    </div>
+                    <button type="submit" class="auth-submit admin-btn">Verify Admin</button>
+                    <p class="auth-footer-text">Need Admin Access? <a href="#" data-show-form="adminSignup">Register Admin</a></p>
+                </form>
+
+                <form id="userSignupForm" class="auth-form">
+                    <h3>User Registration</h3>
+                    <div class="input-group">
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="uRegName" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" id="uRegEmail" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" id="uRegPass" placeholder="Create Password" required>
+                    </div>
+                    <button type="submit" class="auth-submit user-btn">Register as User</button>
+                    <p class="auth-footer-text">Already have an account? <a href="#" data-show-form="userLogin">Back to Login</a></p>
+                </form>
+
+                <form id="adminSignupForm" class="auth-form">
+                    <h3>Admin Registration</h3>
+                    <div class="input-group">
+                        <i class="fa fa-id-badge"></i>
+                        <input type="text" id="aRegName" placeholder="Admin Name" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" id="aRegEmail" placeholder="Work Email" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa fa-shield-halved"></i>
+                        <input type="password" id="aRegPass" placeholder="Admin Password" required>
+                    </div>
+                    <button type="submit" class="auth-submit admin-btn">Register Admin</button>
+                    <p class="auth-footer-text">Authorized? <a href="#" data-show-form="adminLogin">Back to Admin Login</a></p>
+                </form>
+            </div>
+            
+            <div id="messageBox" class="msg-box"></div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <img src="images/samarth.jpg" alt="Samarth Enterprises" class="footer-logo">
+                <p>
+                    We provide reliable manpower, security, housekeeping, and gardening services. 
+                    Our team is trained to maintain safety, cleanliness, and smooth operations for 
+                    homes, societies, offices, and industries.
+                </p>
+            </div>
+
+            <div class="footer-section connect">
+                <h3>CONNECT US</h3>
+                <p>Tel : +919168769090</p>
+                <p>Email : samarthent2024@gmail.com</p>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section services">
+                <h3>WHAT WE DO</h3>
+                <ul>
+                    <li>Security Services</li>
+                    <li>Housekeeping</li>
+                    <li>Labour Supply</li>
+                    <li>Gardening Services</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            Copyright © 2026 Samarth Enterprises. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="auth-portal.js"></script>
+</body>
+</html>

@@ -8,16 +8,24 @@
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["labour", "security", "housekeeping", "gardening"],
+  "keywords": [
+    "labour",
+    "security",
+    "housekeeping",
+    "gardening",
+    "crm"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^4.18.2",
     "helmet": "^8.1.0",
     "mongoose": "^9.0.0",
+    "jsonwebtoken": "^9.0.2",
     "nodemailer": "^7.0.10"
   },
   "devDependencies": {

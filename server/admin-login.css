@@ -1,0 +1,56 @@
+/* Admin-specific theme overrides */
+:root {
+    --admin-dark: #2c3e50;
+    --admin-hover: #1a252f;
+}
+
+.login-wrapper {
+    background: #eceff1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.login-card {
+    border-top: 6px solid var(--admin-dark) !important;
+}
+
+.login-header i {
+    color: var(--admin-dark);
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.input-container i {
+    color: var(--admin-dark) !important;
+}
+
+.admin-btn {
+    background-color: var(--admin-dark);
+    color: white;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.admin-btn:hover {
+    background-color: var(--admin-hover);
+    transform: translateY(-2px);
+}
+
+.error-msg {
+    color: #e74c3c;
+    background: #fdf2f2;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    display: none;
+    text-align: center;
+    font-size: 14px;
+}

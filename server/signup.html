@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account | Samarth Enterprises</title>
+    <link rel="stylesheet" href="samarth.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>Create Account</h2>
+                <p>Enter details to set up your CRM access</p>
+            </div>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Create Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label>Register As</label>
+                    <select id="role">
+                        <option value="user" selected>User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="form-group" id="adminSecretGroup" style="display:none;">
+                    <label>Admin Secret Key</label>
+                    <input type="password" id="adminSecret" placeholder="Enter admin secret">
+                </div>
+                <button type="submit" class="login-btn">Register Now</button>
+                <div id="signupMsg" class="signup-msg" role="status" aria-live="polite" style="display:none;margin-top:12px;"></div>
+            </form>
+            <div class="login-footer">
+                <p>Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // toggle admin secret input when role changes
+        document.getElementById('role').addEventListener('change', (e) => {
+            const show = e.target.value === 'admin';
+            const group = document.getElementById('adminSecretGroup');
+            group.style.display = show ? 'block' : 'none';
+            document.getElementById('adminSecret').required = show;
+        });
+
+        // If URL contains ?role=admin preselect admin and show secret input
+        (function applyRoleFromQuery() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const role = params.get('role');
+                if (role === 'admin') {
+                    const roleEl = document.getElementById('role');
+                    roleEl.value = 'admin';
+                    roleEl.dispatchEvent(new Event('change'));
+                }
+            } catch (e) {}
+        })();
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                role: document.getElementById('role').value // user or admin
+            };
+
+            // include admin secret when registering as admin
+            if (userData.role === 'admin') {
+                userData.adminSecret = document.getElementById('adminSecret').value;
+            }
+
+            const res = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok) {
+                const msgEl = document.getElementById('signupMsg');
+                msgEl.style.display = 'block';
+                msgEl.className = 'signup-msg success';
+                msgEl.textContent = data.msg || 'Registered successfully — redirecting to login...';
+                // redirect after short delay so user sees message
+                setTimeout(() => window.location.href = 'login.html', 1400);
+            } else {
+                const msgEl = document.getElementById('signupMsg');
+                msgEl.style.display = 'block';
+                msgEl.className = 'signup-msg error';
+                msgEl.textContent = data.msg || 'Registration failed. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>

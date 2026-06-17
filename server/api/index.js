@@ -30,12 +30,14 @@ app.use(helmet({
 
 // Restricted CORS - only allow your own domain
 const corsOptions = {
-  origin: process.env.ALLOWED_ORIGIN || "http://localhost:3000",
+  origin: process.env.ALLOWED_ORIGIN || true,  // Allow any origin if not specified
   credentials: true,
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'X-API-Key']
 };
 app.use(cors(corsOptions));
+app.options('/api/enquiry', cors(corsOptions));
+app.options('/api/*', cors(corsOptions));
 
 // Rate limiting middleware (prevent spam/DDoS)
 const MAX_REQUESTS = 100;
@@ -86,6 +88,7 @@ function sanitizeInput(str) {
 // Email validation regex
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^[\d\s\-\+\(\)]{7,}$/;
+const OWNER_EMAIL = process.env.TO_EMAIL || process.env.OWNER_EMAIL || 'samarthent2024@gmail.com';
 
 /* ------------------------- MongoDB Connection ------------------------- */
 // Optional: Only connect if MONGO_URI exists
@@ -230,7 +233,7 @@ app.post("/api/enquiry", async (req, res) => {
       try {
         await transporter.sendMail({
           from: `"Samarth Website" <${process.env.SMTP_USER}>`,
-          to: process.env.TO_EMAIL || process.env.SMTP_USER,
+          to: OWNER_EMAIL,
           subject: `New Website Enquiry — ${data.service || 'General'}`,
           html: `
             <h3>New Enquiry</h3>
@@ -247,6 +250,7 @@ app.post("/api/enquiry", async (req, res) => {
         mailed = true;
         console.log("📧 Email sent successfully");
       } catch (err) {
+        mailed = false;
         console.warn("⚠️ Email failed:", err.message);
       }
     }

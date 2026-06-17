@@ -13,6 +13,17 @@ npm install
 
 2. (Optional) Configure SMTP — copy `.env.example` to `.env` and fill the SMTP_* and TO_EMAIL values.
 
+4. Admin registration secret
+
+	- To prevent unauthorized admin accounts, set an `ADMIN_SECRET` environment variable (or add it to your `.env`). The server will reject any registration that requests role `admin` unless the correct secret is provided.
+
+	Example `.env` entries:
+
+	```
+	JWT_SECRET=your_jwt_secret_here
+	ADMIN_SECRET=some_strong_secret_here
+	```
+
 3. Start the server:
 
 ```powershell

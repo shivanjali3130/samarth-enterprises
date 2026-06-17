@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal | Samarth Enterprises</title>
+    <link rel="icon" href="images/samarth.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="samarth.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="admin-login.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-left">
+            <img id="site-logo" src="images/samarth.jpg" alt="Logo">
+            <div class="site-title-group">
+                <h1 class="site-title">Samarth Enterprises</h1>
+                <p class="site-subtitle">Internal Administration</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <i class="fa fa-user-shield"></i>
+                <h2>Admin Login</h2>
+                <p>Authorized Personnel Only</p>
+            </div>
+
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="email">Admin Email</label>
+                    <div class="input-container">
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" id="email" placeholder="admin@samarth.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Security Password</label>
+                    <div class="input-container">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="admin-btn">Verify & Enter</button>
+                <div id="errorBox" class="error-msg"></div>
+            </form>
+
+            <div class="login-footer">
+                <p><a href="signup.html?role=admin">Register as Admin</a></p>
+                <p><a href="samarth.html"><i class="fa fa-arrow-left"></i> Back to Main Site</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            © 2026 Samarth Enterprises. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="admin-login.js"></script>
+</body>
+</html>
