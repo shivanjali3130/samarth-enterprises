@@ -514,7 +514,7 @@ app.get('/api/admin/stats', protect, adminOnly, async (req, res) => {
 // ══════════════════════════════════════════════
 const htmlPages = [
   'samarth', 'about', 'contact', 'gallery', 'services',
-  'auth-portal', 'admin-dashboard', 'my-enquiries', 'login'
+  'auth-portal', 'admin-dashboard', 'my-enquiries', 'login', 'portal'
 ];
 
 htmlPages.forEach(page => {
@@ -533,9 +533,9 @@ htmlPages.forEach(page => {
   });
 });
 
-// Home - Now serves login landing page
+// Home - Now serves portal landing page
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login.html'));
+  res.sendFile(path.join(__dirname, 'portal.html'));
 });
 
 // ══════════════════════════════════════════════

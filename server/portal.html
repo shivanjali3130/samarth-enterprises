@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Portal | Samarth Enterprises</title>
+    <link rel="icon" href="images/samarth.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="samarth.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #04B1F1 0%, #0389ba 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header.portal-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        header.portal-header h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        header.portal-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+
+        .portal-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .portal-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .portal-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .portal-title h2 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .portal-title p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .portal-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: white;
+            text-align: center;
+        }
+
+        .portal-btn i {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .portal-btn.user-login {
+            background: linear-gradient(135deg, #04B1F1 0%, #0389ba 100%);
+        }
+
+        .portal-btn.user-login:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(4, 177, 241, 0.3);
+        }
+
+        .portal-btn.user-register {
+            background: linear-gradient(135deg, #6C63FF 0%, #4C40D9 100%);
+        }
+
+        .portal-btn.user-register:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
+        }
+
+        .portal-btn.admin-login {
+            background: linear-gradient(135deg, #FF6B6B 0%, #D63031 100%);
+        }
+
+        .portal-btn.admin-login:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .portal-btn.admin-register {
+            background: linear-gradient(135deg, #FFA502 0%, #FF8C00 100%);
+        }
+
+        .portal-btn.admin-register:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 165, 2, 0.3);
+        }
+
+        .portal-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .portal-footer a {
+            display: inline-block;
+            color: #04B1F1;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .portal-footer a:hover {
+            color: #0389ba;
+        }
+
+        @media (max-width: 600px) {
+            .portal-card {
+                padding: 30px 20px;
+            }
+
+            .portal-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .portal-btn {
+                padding: 25px 15px;
+            }
+
+            .portal-btn i {
+                font-size: 28px;
+            }
+
+            .portal-title h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="portal-header">
+        <h1>Samarth Enterprises</h1>
+        <p>CRM Access Portal</p>
+    </header>
+
+    <div class="portal-container">
+        <div class="portal-card">
+            <div class="portal-title">
+                <h2>Choose Your Access Type</h2>
+                <p>Select whether you're a user or administrator</p>
+            </div>
+
+            <div class="portal-grid">
+                <a href="login.html" class="portal-btn user-login">
+                    <i class="fas fa-user"></i>
+                    User Login
+                </a>
+                <a href="signup.html" class="portal-btn user-register">
+                    <i class="fas fa-user-plus"></i>
+                    User Register
+                </a>
+                <a href="admin-login.html" class="portal-btn admin-login">
+                    <i class="fas fa-shield-alt"></i>
+                    Admin Login
+                </a>
+                <a href="signup.html?role=admin" class="portal-btn admin-register">
+                    <i class="fas fa-user-secret"></i>
+                    Admin Register
+                </a>
+            </div>
+
+            <div class="portal-footer">
+                <a href="samarth.html"><i class="fas fa-arrow-left"></i> Back to Website</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
