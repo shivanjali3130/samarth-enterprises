@@ -535,7 +535,7 @@ htmlPages.forEach(page => {
 
 // Home - Now serves login landing page
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'login.html'));
 });
 
 // ══════════════════════════════════════════════
