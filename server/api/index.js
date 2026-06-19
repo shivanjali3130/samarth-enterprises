@@ -78,8 +78,8 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 // Apply rate limiting
 app.use('/api/', rateLimit);
 
-// Auth routes
-app.use('/api/auth', authRoutes);
+// Auth routes (support both path styles inside Vercel function)
+app.use(['/auth', '/api/auth'], authRoutes);
 
 // Sanitize inputs - basic XSS prevention
 function sanitizeInput(str) {

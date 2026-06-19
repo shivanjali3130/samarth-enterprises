@@ -38,7 +38,8 @@ router.post('/register', async (req, res) => {
     await user.save();
     res.status(201).json({ msg: "User registered successfully" });
   } catch (err) {
-    res.status(500).send("Server Error");
+    console.error('Auth register error:', err);
+    res.status(500).json({ msg: 'Server Error', error: err.message });
   }
 });
 
@@ -62,7 +63,8 @@ router.post('/login', async (req, res) => {
 
     res.json({ token, role: user.role, name: user.name });
   } catch (err) {
-    res.status(500).send("Server Error");
+    console.error('Auth login error:', err);
+    res.status(500).json({ msg: 'Server Error', error: err.message });
   }
 });
 
