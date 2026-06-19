@@ -16,16 +16,25 @@
             <img id="site-logo" src="images/samarth.jpg" alt="Samarth Enterprises logo">
             <div class="site-title-group">
                 <h1 class="site-title">Samarth Enterprises</h1>
-                <p class="site-subtitle">Labour & Security Services</p>
+                <p class="site-subtitle">Labour &amp; Security Services</p>
             </div>
         </div>
-        <nav class="main-nav">
+
+        <nav class="main-nav" aria-label="Main">
             <ul>
-                <li><a href="samarth.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
+        
+        <div class="header-right">
+            <div class="contact-info">
+                <span class="contact-question">Have any questions?</span>
+                <a class="contact-phone" href="tel:+919168769090" aria-label="Call Samarth Enterprises">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <span class="phone-text">+91-9168769090</span>
+                </a>
+            </div>
+        </div>
     </header>
 
     <div class="login-wrapper">
@@ -61,12 +70,59 @@
         </div>
     </div>
 
-    <footer class="site-footer">
-        <div class="footer-bottom">
-            Copyright © 2025 Samarth Enterprises. All Rights Reserved.
-        </div>
-    </footer>
+    <!-- Footer (copied from samarth.html) -->
+    <footer class="footer">
+    <div class="footer-container">
 
+        <!-- Left: Logo + About -->
+        <div class="footer-section about">
+            <img src="images/samarth.jpg" alt="Samarth Enterprises" class="footer-logo">
+
+            <p>
+                We provide reliable manpower, security, housekeeping, and gardening services. 
+                Our team is trained to maintain safety, cleanliness, and smooth operations for 
+                homes, societies, offices, and industries.
+            </p>
+        </div>
+
+        <!-- Center: Connect Us -->
+        <div class="footer-section connect">
+            <h3>CONNECT US</h3>
+            <p>Tel : +919168769090</p>
+            <p>Email : samarthent2024@gmail.com</p>
+
+            <div class="social-icons">
+                <a href="https://facebook.com/yourpage" target="_blank">
+                     <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com/yourpage" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com/in/yourpage" target="_blank">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Right: What We Do -->
+        <div class="footer-section services">
+            <h3>WHAT WE DO</h3>
+            <ul>
+                <li>Security Services</li>
+                <li>Housekeeping</li>
+                <li>Labour Supply</li>
+                <li>Gardening Services</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        Copyright © 2025 Samarth Enterprises. All Rights Reserved.
+    </div>
+</footer>
+
+    <script src="samarth.js"></script>
     <script src="login.js"></script>
 </body>
 </html>
