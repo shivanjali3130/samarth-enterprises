@@ -3,7 +3,50 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const fs = require('fs').promises;
+const path = require('path');
 const User = require('../models/user');
+
+const usersDataPath = path.join(__dirname, '..', 'data', 'users.json');
+
+async function ensureLocalUsersFile() {
+  try {
+    await fs.mkdir(path.dirname(usersDataPath), { recursive: true });
+    await fs.access(usersDataPath);
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      await fs.writeFile(usersDataPath, '[]', 'utf8');
+    } else {
+      throw err;
+    }
+  }
+}
+
+async function loadLocalUsers() {
+  await ensureLocalUsersFile();
+  const raw = await fs.readFile(usersDataPath, 'utf8');
+  return JSON.parse(raw || '[]');
+}
+
+async function saveLocalUsers(users) {
+  await ensureLocalUsersFile();
+  await fs.writeFile(usersDataPath, JSON.stringify(users, null, 2), 'utf8');
+}
+
+async function findUserByEmail(email) {
+  if (mongoose.connection.readyState === 1) {
+    return User.findOne({ email });
+  }
+  const users = await loadLocalUsers();
+  return users.find(u => u.email === email) || null;
+}
+
+async function createLocalUser(userData) {
+  const users = await loadLocalUsers();
+  users.push(userData);
+  await saveLocalUsers(users);
+  return userData;
+}
 
 // REGISTER ROUTE
 router.post('/register', async (req, res) => {
@@ -20,13 +63,8 @@ router.post('/register', async (req, res) => {
       }
     }
 
-    // Ensure database is connected
-    if (mongoose.connection.readyState !== 1) {
-      return res.status(503).json({ msg: 'Database connection unavailable. Please try again later.' });
-    }
-
     // Check if user exists
-    let user = await User.findOne({ email });
+    let user = await findUserByEmail(email);
     if (user) return res.status(400).json({ msg: "User already exists" });
 
     // Hash the password
@@ -34,14 +72,20 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Create new user
-    user = new User({
+    const newUser = {
       name,
       email,
       password: hashedPassword,
       role: role || 'user' // Defaults to 'user' unless 'admin' is specified
-    });
+    };
 
-    await user.save();
+    if (mongoose.connection.readyState === 1) {
+      user = new User(newUser);
+      await user.save();
+    } else {
+      user = await createLocalUser(newUser);
+    }
+
     res.status(201).json({ msg: "User registered successfully" });
   } catch (err) {
     console.error('Auth register error:', err);
@@ -54,7 +98,7 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await findUserByEmail(email);
     if (!user) return res.status(400).json({ msg: "Invalid Credentials" });
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -62,8 +106,8 @@ router.post('/login', async (req, res) => {
 
     // Create Token with the User ID and Role
     const token = jwt.sign(
-      { id: user._id, role: user.role },
-      process.env.JWT_SECRET,
+      { id: user._id || user.email, role: user.role },
+      process.env.JWT_SECRET || 'samarth-secret-change-in-production',
       { expiresIn: '1h' }
     );
 
