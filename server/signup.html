@@ -110,24 +110,32 @@
                 userData.adminSecret = document.getElementById('adminSecret').value;
             }
 
-            const res = await fetch('/api/auth/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(userData)
-            });
-            const data = await res.json().catch(() => ({}));
-            if (res.ok) {
+            try {
+                const res = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(userData)
+                });
+                const data = await res.json().catch(() => ({}));
+
                 const msgEl = document.getElementById('signupMsg');
                 msgEl.style.display = 'block';
-                msgEl.className = 'signup-msg success';
-                msgEl.textContent = data.msg || 'Registered successfully — redirecting to login...';
-                // redirect after short delay so user sees message
-                setTimeout(() => window.location.href = 'login.html', 1400);
-            } else {
+
+                if (res.ok) {
+                    msgEl.className = 'signup-msg success';
+                    msgEl.textContent = data.msg || 'Registered successfully — redirecting to login...';
+                    setTimeout(() => window.location.href = 'login.html', 1400);
+                } else {
+                    msgEl.className = 'signup-msg error';
+                    msgEl.textContent = data.msg || data.error || `Registration failed: ${res.status} ${res.statusText}`;
+                    console.error('Signup failed:', res.status, res.statusText, data);
+                }
+            } catch (err) {
                 const msgEl = document.getElementById('signupMsg');
                 msgEl.style.display = 'block';
                 msgEl.className = 'signup-msg error';
-                msgEl.textContent = data.msg || 'Registration failed. Please try again.';
+                msgEl.textContent = 'Registration failed. Please check your connection and try again.';
+                console.error('Signup request error:', err);
             }
         });
         </script>

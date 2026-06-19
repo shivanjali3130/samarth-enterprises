@@ -4,8 +4,12 @@ const cors = require('cors');
 const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const path = require("path");
 
+const User = require(path.join(__dirname, '..', '..', 'models', 'user'));
+const authRoutes = require(path.join(__dirname, '..', '..', 'routes', 'authRoutes'));
 const app = express();
 
 // ============================
@@ -73,6 +77,9 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 // Apply rate limiting
 app.use('/api/', rateLimit);
+
+// Auth routes
+app.use('/api/auth', authRoutes);
 
 // Sanitize inputs - basic XSS prevention
 function sanitizeInput(str) {
