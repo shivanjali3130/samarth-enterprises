@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 const User = require('../models/user');
 
 // REGISTER ROUTE
@@ -17,6 +18,11 @@ router.post('/register', async (req, res) => {
       if (!adminSecret || adminSecret !== process.env.ADMIN_SECRET) {
         return res.status(401).json({ msg: 'Invalid admin secret' });
       }
+    }
+
+    // Ensure database is connected
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({ msg: 'Database connection unavailable. Please try again later.' });
     }
 
     // Check if user exists
