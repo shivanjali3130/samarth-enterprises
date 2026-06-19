@@ -4,8 +4,16 @@
     --admin-hover: #1a252f;
 }
 
+body {
+    background-image: url("images/ChatGPT Image Nov 21, 2025, 08_04_05 PM (1).png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 .login-wrapper {
-    background: #eceff1;
+    background: rgba(236, 239, 241, 0.85);
     display: flex;
     justify-content: center;
     align-items: center;

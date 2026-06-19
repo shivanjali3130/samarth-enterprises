@@ -1,10 +1,18 @@
 /* Login Page Specific Styling */
+body {
+    background-image: url("images/ChatGPT Image Nov 21, 2025, 08_04_05 PM (1).png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 .login-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 150px 20px 80px; /* Offset for fixed header */
-    background-color: #f9f9f9;
+    background-color: rgba(249, 249, 249, 0.85);
     min-height: 80vh;
 }
 
