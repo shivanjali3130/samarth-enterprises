@@ -4,10 +4,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const fs = require('fs').promises;
+const os = require('os');
 const path = require('path');
 const User = require('../models/user');
 
-const usersDataPath = path.join(__dirname, '..', 'data', 'users.json');
+const usersDataPath = path.join(os.tmpdir(), 'samarth-users.json');
 
 async function ensureLocalUsersFile() {
   try {

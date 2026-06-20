@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "functions": {
+    "server/api/index.js": {
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/server/api/index.js" },
+    { "source": "/", "destination": "/server/portal.html" },
+    { "source": "/(.*)", "destination": "/server/$1" }
+  ]
+}

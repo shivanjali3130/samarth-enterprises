@@ -75,6 +75,12 @@ function rateLimit(req, res, next) {
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
+// Debug request logging for deployment troubleshooting
+app.use((req, res, next) => {
+  console.log('API request:', req.method, req.originalUrl, 'path:', req.path, 'baseUrl:', req.baseUrl);
+  next();
+});
+
 // Apply rate limiting
 app.use('/api/', rateLimit);
 

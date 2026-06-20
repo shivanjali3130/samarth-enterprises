@@ -116,7 +116,14 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(userData)
                 });
-                const data = await res.json().catch(() => ({}));
+                let data = {};
+                let bodyText = '';
+                try {
+                    bodyText = await res.text();
+                    data = bodyText ? JSON.parse(bodyText) : {};
+                } catch (parseErr) {
+                    data = {};
+                }
 
                 const msgEl = document.getElementById('signupMsg');
                 msgEl.style.display = 'block';
@@ -127,8 +134,9 @@
                     setTimeout(() => window.location.href = 'login.html', 1400);
                 } else {
                     msgEl.className = 'signup-msg error';
-                    msgEl.textContent = data.msg || data.error || `Registration failed: ${res.status} ${res.statusText}`;
-                    console.error('Signup failed:', res.status, res.statusText, data);
+                    const errorText = data.msg || data.error || bodyText || `Registration failed: ${res.status} ${res.statusText}`;
+                    msgEl.textContent = typeof errorText === 'string' ? errorText : JSON.stringify(errorText);
+                    console.error('Signup failed:', res.status, res.statusText, { bodyText, data });
                 }
             } catch (err) {
                 const msgEl = document.getElementById('signupMsg');
