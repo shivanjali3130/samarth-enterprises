@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const fs = require('fs').promises;
 const os = require('os');
 const path = require('path');
-const User = require('../models/user');
+const User = require(path.join(__dirname, '..', 'models', 'user'));
 
 const usersDataPath = path.join(os.tmpdir(), 'samarth-users.json');
 
