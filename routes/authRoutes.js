@@ -6,7 +6,9 @@ const mongoose = require('mongoose');
 const fs = require('fs').promises;
 const os = require('os');
 const path = require('path');
-const User = require(path.join(__dirname, '..', 'models', 'user'));
+
+// Absolute path - works regardless of how Vercel invokes the function
+const User = require(path.resolve(__dirname, '..', 'models', 'user'));
 
 const usersDataPath = path.join(os.tmpdir(), 'samarth-users.json');
 
@@ -54,7 +56,6 @@ router.post('/register', async (req, res) => {
   try {
     const { name, email, password, role, adminSecret } = req.body;
 
-    // If attempting to register as admin, validate the admin secret
     if (role === 'admin') {
       if (!process.env.ADMIN_SECRET) {
         return res.status(500).json({ msg: 'Admin secret not configured on server' });
@@ -64,20 +65,17 @@ router.post('/register', async (req, res) => {
       }
     }
 
-    // Check if user exists
     let user = await findUserByEmail(email);
     if (user) return res.status(400).json({ msg: "User already exists" });
 
-    // Hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create new user
     const newUser = {
       name,
       email,
       password: hashedPassword,
-      role: role || 'user' // Defaults to 'user' unless 'admin' is specified
+      role: role || 'user'
     };
 
     if (mongoose.connection.readyState === 1) {
@@ -105,7 +103,6 @@ router.post('/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid Credentials" });
 
-    // Create Token with the User ID and Role
     const token = jwt.sign(
       { id: user._id || user.email, role: user.role },
       process.env.JWT_SECRET || 'samarth-secret-change-in-production',
