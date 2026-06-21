@@ -8,13 +8,7 @@
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "labour",
-    "security",
-    "housekeeping",
-    "gardening",
-    "crm"
-  ],
+  "keywords": ["labour", "security", "housekeeping", "gardening", "crm"],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
