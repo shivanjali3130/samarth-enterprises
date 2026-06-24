@@ -57,11 +57,27 @@ router.post('/register', async (req, res) => {
     const { name, email, password, role, adminSecret } = req.body;
 
     if (role === 'admin') {
-      if (!process.env.ADMIN_SECRET) {
-        return res.status(500).json({ msg: 'Admin secret not configured on server' });
+      // Allow the very first admin to self-register when no admin exists yet.
+      // If an admin already exists, require ADMIN_SECRET for additional admin creation.
+      let adminExists = false;
+      try {
+        if (mongoose.connection.readyState === 1) {
+          adminExists = (await User.countDocuments({ role: 'admin' })) > 0;
+        } else {
+          const users = await loadLocalUsers();
+          adminExists = users.some(u => u.role === 'admin');
+        }
+      } catch (e) {
+        console.error('Admin existence check failed:', e.message);
       }
-      if (!adminSecret || adminSecret !== process.env.ADMIN_SECRET) {
-        return res.status(401).json({ msg: 'Invalid admin secret' });
+
+      if (adminExists) {
+        if (!process.env.ADMIN_SECRET) {
+          return res.status(500).json({ msg: 'Admin secret not configured on server' });
+        }
+        if (!adminSecret || adminSecret !== process.env.ADMIN_SECRET) {
+          return res.status(401).json({ msg: 'Invalid admin secret' });
+        }
       }
     }
 
