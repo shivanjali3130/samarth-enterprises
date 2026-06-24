@@ -5,6 +5,7 @@
 const token    = localStorage.getItem('token');
 const role     = localStorage.getItem('role');
 const userName = localStorage.getItem('userName') || 'Admin';
+const API_BASE  = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : 'http://localhost:3000';
 
 // ── Guard: must be logged in as admin ─────────
 if (!token || role !== 'admin') {
@@ -110,7 +111,7 @@ async function fetchAllEnquiries() {
 
   try {
     console.log('📥 Fetching enquiries with token:', token ? 'present' : 'missing');
-    const res = await fetch('/api/admin/all-enquiries', {
+    const res = await fetch(`${API_BASE}/api/admin/all-enquiries`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -214,7 +215,7 @@ async function createNewLead() {
     console.log('📝 Creating new lead:', { name, email, phone, service, location, message });
     
     // Use the public enquiry endpoint - it will be linked to admin by email lookup
-    const res = await fetch('/api/enquiry', { 
+    const res = await fetch(`${API_BASE}/api/enquiry`, { 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, phone, service, location, message })
@@ -265,7 +266,7 @@ async function createLabourRecord() {
   }
 
   try {
-    const res = await fetch('/api/admin/labour', {
+    const res = await fetch(`${API_BASE}/api/admin/labour`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -304,7 +305,7 @@ async function fetchLabourRecords() {
     </tr>`;
 
   try {
-    const res = await fetch('/api/admin/all-labour', {
+    const res = await fetch(`${API_BASE}/api/admin/all-labour`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -352,7 +353,7 @@ async function deleteLabour(id, btn) {
   btn.textContent = 'Deleting…';
 
   try {
-    const res = await fetch(`/api/admin/labour/${id}`, {
+    const res = await fetch(`${API_BASE}/api/admin/labour/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     });
@@ -385,7 +386,7 @@ async function deleteLabour(id, btn) {
 // ══════════════════════════════════════════════
 async function loadStats() {
   try {
-    const res = await fetch('/api/admin/stats', {
+    const res = await fetch(`${API_BASE}/api/admin/stats`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     if (!res.ok) return;
@@ -412,7 +413,7 @@ async function updateStatus(id, selectEl) {
   selectEl.dataset.status = status;
 
   try {
-    const res = await fetch(`/api/admin/enquiries/${id}/status`, {
+    const res = await fetch(`${API_BASE}/api/admin/enquiries/${id}/status`, {
       method:  'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -441,7 +442,7 @@ async function deleteEnquiry(id, btn) {
   btn.textContent = 'Deleting…';
 
   try {
-    const res = await fetch(`/api/admin/enquiries/${id}`, {
+    const res = await fetch(`${API_BASE}/api/admin/enquiries/${id}`, {
       method:  'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     });
