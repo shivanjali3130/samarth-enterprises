@@ -1,4 +1,9 @@
 //require('dotenv').config();
+console.log('ENV CHECK:', {
+  MONGO_URI: process.env.MONGO_URI ? 'SET' : 'NOT SET',
+  JWT_SECRET: process.env.JWT_SECRET ? 'SET' : 'NOT SET',
+  NODE_ENV: process.env.NODE_ENV
+});
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
