@@ -7,10 +7,25 @@ const fs = require('fs').promises;
 const os = require('os');
 const path = require('path');
 
-// Absolute path - works regardless of how Vercel invokes the function
 const User = require(path.resolve(__dirname, '..', 'models', 'user'));
 
 const usersDataPath = path.join(os.tmpdir(), 'samarth-users.json');
+
+async function waitForDB(timeoutMs = 5000) {
+  if (mongoose.connection.readyState === 1) return true;
+  return new Promise((resolve) => {
+    const start = Date.now();
+    const interval = setInterval(() => {
+      if (mongoose.connection.readyState === 1) {
+        clearInterval(interval);
+        resolve(true);
+      } else if (Date.now() - start > timeoutMs) {
+        clearInterval(interval);
+        resolve(false);
+      }
+    }, 100);
+  });
+}
 
 async function ensureLocalUsersFile() {
   try {
@@ -54,6 +69,8 @@ async function createLocalUser(userData) {
 // REGISTER ROUTE
 router.post('/register', async (req, res) => {
   console.log('Register attempt, DB state:', mongoose.connection.readyState);
+  await waitForDB();
+  console.log('After wait, DB state:', mongoose.connection.readyState);
   try {
     const { name, email, password, role, adminSecret } = req.body;
 
@@ -109,6 +126,9 @@ router.post('/register', async (req, res) => {
 
 // LOGIN ROUTE
 router.post('/login', async (req, res) => {
+  console.log('Login attempt, DB state:', mongoose.connection.readyState);
+  await waitForDB();
+  console.log('After wait, DB state:', mongoose.connection.readyState);
   try {
     const { email, password } = req.body;
 
