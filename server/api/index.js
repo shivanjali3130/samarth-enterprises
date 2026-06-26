@@ -111,12 +111,13 @@ const OWNER_EMAIL = process.env.TO_EMAIL || process.env.OWNER_EMAIL || 'samarthe
 /* ------------------------- MongoDB Connection ------------------------- */
 // Optional: Only connect if MONGO_URI exists
 if (process.env.MONGO_URI) {
+  console.log('Attempting MongoDB connection...');
   mongoose.connect(process.env.MONGO_URI)
     .then(() => {
       console.log("✅ MongoDB Connected Successfully");
     })
     .catch((err) => {
-      console.error("❌ MongoDB Connection Failed:", err);
+      console.error("❌ MongoDB Connection Failed:", err.message);
     });
 } else {
   console.warn("⚠️ MONGO_URI not set - database features disabled");

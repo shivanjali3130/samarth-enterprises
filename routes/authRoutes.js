@@ -53,12 +53,11 @@ async function createLocalUser(userData) {
 
 // REGISTER ROUTE
 router.post('/register', async (req, res) => {
+  console.log('Register attempt, DB state:', mongoose.connection.readyState);
   try {
     const { name, email, password, role, adminSecret } = req.body;
 
     if (role === 'admin') {
-      // Allow the very first admin to self-register when no admin exists yet.
-      // If an admin already exists, require ADMIN_SECRET for additional admin creation.
       let adminExists = false;
       try {
         if (mongoose.connection.readyState === 1) {
